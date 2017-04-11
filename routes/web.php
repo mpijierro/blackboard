@@ -19,5 +19,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-
-
+Route::get('create-post', 'PostController@viewCreateForm');
+Route::post('create-post', ['as' => 'createPost', 'uses' => 'PostController@createPost']);
