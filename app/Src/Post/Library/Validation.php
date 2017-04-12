@@ -16,15 +16,6 @@ class Validation extends BaseValidation
     ];
 
 
-    /**
-     * @return array
-     */
-    public function getRules()
-    {
-        return $this->rules;
-    }
-
-
     public function validateCommand(PostCommand $command)
     {
 

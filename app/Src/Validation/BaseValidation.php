@@ -6,13 +6,23 @@ use Illuminate\Support\Facades\Validator;
 
 class BaseValidation
 {
-
     protected $rules = [];
 
     protected $errors;
 
     protected $validator = null;
 
+
+    public function getRules()
+    {
+        return $this->rules;
+    }
+
+
+    public function errors()
+    {
+        return $this->errors;
+    }
 
     public function getValidatorOrNull()
     {
@@ -31,12 +41,6 @@ class BaseValidation
         }
 
         return true;
-    }
-
-
-    public function errors()
-    {
-        return $this->errors;
     }
 
 }
