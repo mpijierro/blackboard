@@ -11,14 +11,21 @@ class BaseValidation
 
     protected $errors;
 
+    protected $validator = null;
+
+
+    public function getValidatorOrNull()
+    {
+        return $this->validator;
+    }
 
     public function validate($data)
     {
 
-        $v = Validator::make($data, $this->rules);
+        $this->validator = Validator::make($data, $this->rules);
 
-        if ($v->fails()) {
-            $this->errors = $v->errors();
+        if ($this->validator->fails()) {
+            $this->errors = $this->validator->errors();
 
             return false;
         }

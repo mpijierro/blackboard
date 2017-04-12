@@ -19,9 +19,17 @@ class PostRepository
 
     public function create(PostCommand $command)
     {
+        return $this->post->create($this->transformToArray($command));
+    }
 
-        return $this->post->create((array)$command);
 
+    private function transformToArray(PostCommand $command)
+    {
+        return [
+            'user_id' => $command->userId,
+            'title'   => $command->title,
+            'content' => $command->content
+        ];
     }
 
 }

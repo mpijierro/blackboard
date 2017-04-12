@@ -10,6 +10,15 @@
                         <form class="form-horizontal" role="form" method="POST" action="{{ route('createPost') }}">
                             {{ csrf_field() }}
 
+                            @if ($errors->has('custom-error'))
+                                <div class="form-group{{ $errors->has('custom-error') ? ' has-error' : '' }}">
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('custom-error') }}</strong>
+                                    </span>
+                                </div>
+                            @endif
+
+
                             <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                                 <label for="title" class="col-md-4 control-label">Title</label>
 

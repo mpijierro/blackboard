@@ -36,12 +36,20 @@ class CreatePost
     }
 
 
-    public function execute(PostCommand $postCommand)
+    public function execute(PostCommand $command)
     {
 
-        $this->validation->validateCommand($postCommand);
+        $command->userId = $this->retrieveUserLoggedId();
 
-        $this->postRepository->create($postCommand);
+        $this->validation->validateCommand($command);
 
+        $this->postRepository->create($command);
+
+    }
+
+
+    private function retrieveUserLoggedId()
+    {
+        return 1;
     }
 }
