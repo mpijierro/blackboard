@@ -43,11 +43,7 @@ class CreatePost
 
         $command->userId = null;
 
-        $this->validation->validateCommand($command);
-
-        if ($this->validation->getNotification()->hasErrors()) {
-            throw new CustomValidationException();
-        }
+        $this->checkValidation($command);
 
         $this->postRepository->create($command);
 
@@ -57,5 +53,14 @@ class CreatePost
     private function retrieveUserLoggedId()
     {
         return 1;
+    }
+
+    private function checkValidation(PostCommand $command)
+    {
+        $this->validation->validateCommand($command);
+
+        if ($this->validation->getNotification()->hasErrors()) {
+            throw new CustomValidationException();
+        }
     }
 }

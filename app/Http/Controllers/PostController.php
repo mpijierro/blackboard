@@ -43,7 +43,7 @@ class PostController extends Controller
             $notification = $handler->getValidation()->getNotification();
 
             if ($notification->hasErrors()) {
-                $errors = $this->buildCustomError($notification->errorMessage()->getMessage());
+                $errors = $this->buildCustomError($notification->messages());
             }
 
             return back()->withErrors($errors);

@@ -30,12 +30,8 @@ class Validation extends BaseValidation
     {
 
         if (is_null($command->userId)) {
-
-            $this->notificacion->addError($this->buildNotificationError('User is required'));
-
-            //throw new CustomValidationException ('User is required');
+            $this->notificacion->addError($this->buildNotificationError('User is required.'));
         }
-
 
     }
 

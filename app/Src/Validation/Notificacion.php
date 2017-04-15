@@ -39,4 +39,13 @@ class Notificacion
         return $this->errors->first();
     }
 
+    public function messages()
+    {
+        $message = '';
+        foreach ($this->errors as $error) {
+            $message .= $error->getMessage() . ' ';
+        }
+
+        return $message;
+    }
 }
