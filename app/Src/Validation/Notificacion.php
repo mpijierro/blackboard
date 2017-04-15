@@ -20,15 +20,6 @@ class Notificacion
 
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCause()
-    {
-        return $this->cause;
-    }
-
-
     public function hasErrors()
     {
         return $this->errors->count();
