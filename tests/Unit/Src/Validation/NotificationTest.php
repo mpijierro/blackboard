@@ -16,7 +16,6 @@ class NotificationTest extends TestCase
 
         $notification = new Notificacion();
         $this->assertInstanceOf(Notificacion::class, $notification);
-        $this->assertEquals(0, $notification->hasErrors());
     }
 
 
@@ -24,6 +23,8 @@ class NotificationTest extends TestCase
     {
 
         $notification = new Notificacion();
+        $this->assertEquals(0, $notification->hasErrors());
+
         $error = new NotificationError('Error test');
         $notification->addError($error);
 
