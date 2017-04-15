@@ -2,7 +2,7 @@
 
 namespace Blackboard\Src\Post\Repository;
 
-use Blackboard\Src\Post\Command\PostCommand;
+use Blackboard\Src\Post\Actions\PostCommand;
 use Blackboard\Src\Post\Model\Post;
 
 class PostRepository

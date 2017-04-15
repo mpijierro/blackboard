@@ -1,6 +1,6 @@
 <?php
 
-namespace Blackboard\Src\Post\Command;
+namespace Blackboard\Src\Post\Actions;
 
 use Blackboard\Src\Post\Request\PostRequest;
 

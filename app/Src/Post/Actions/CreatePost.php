@@ -1,8 +1,8 @@
 <?php
 
-namespace Blackboard\Src\Post\Handler;
+namespace Blackboard\Src\Post\Actions;
 
-use Blackboard\Src\Post\Command\PostCommand;
+use Blackboard\Exceptions\CustomValidationException;
 use Blackboard\Src\Post\Library\Validation;
 use Blackboard\Src\Post\Repository\PostRepository;
 
@@ -41,7 +41,13 @@ class CreatePost
 
         $command->userId = $this->retrieveUserLoggedId();
 
+        $command->userId = null;
+
         $this->validation->validateCommand($command);
+
+        if ($this->validation->getNotification()->hasErrors()) {
+            throw new CustomValidationException();
+        }
 
         $this->postRepository->create($command);
 

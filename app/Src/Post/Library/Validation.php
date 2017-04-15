@@ -2,8 +2,7 @@
 
 namespace Blackboard\Src\Post\Library;
 
-use Blackboard\Src\Validation\CustomValidationException;
-use Blackboard\Src\Post\Command\PostCommand;
+use Blackboard\Src\Post\Actions\PostCommand;
 use Blackboard\Src\Validation\BaseValidation;
 use Illuminate\Validation\ValidationException;
 
@@ -23,10 +22,20 @@ class Validation extends BaseValidation
             throw new ValidationException($this->errors());
         }
 
-        // Business logic validation
+        $this->validateUser($command);
+
+    }
+
+    private function validateUser(PostCommand $command)
+    {
+
         if (is_null($command->userId)) {
-            throw new CustomValidationException ('User is required');
+
+            $this->notificacion->addError($this->buildNotificationError('User is required'));
+
+            //throw new CustomValidationException ('User is required');
         }
+
 
     }
 

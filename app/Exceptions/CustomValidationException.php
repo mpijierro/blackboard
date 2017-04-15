@@ -1,8 +1,9 @@
 <?php
 
-namespace Blackboard\Src\Validation;
+namespace Blackboard\Exceptions;
+
+use Throwable;
 
 class CustomValidationException extends \Exception
 {
-
 }

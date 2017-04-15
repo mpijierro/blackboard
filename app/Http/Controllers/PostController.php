@@ -2,9 +2,9 @@
 
 namespace Blackboard\Http\Controllers;
 
-use Blackboard\Src\Validation\CustomValidationException;
-use Blackboard\Src\Post\Command\PostCommand;
-use Blackboard\Src\Post\Handler\CreatePost;
+use Blackboard\Exceptions\CustomValidationException;
+use Blackboard\Src\Post\Actions\PostCommand;
+use Blackboard\Src\Post\Actions\CreatePost;
 use Blackboard\Src\Post\Request\PostRequest;
 use Illuminate\Support\MessageBag;
 use Illuminate\Validation\ValidationException;
@@ -37,11 +37,20 @@ class PostController extends Controller
 
         } catch (CustomValidationException $e) {
 
-            $errors = $this->buildCustomError($e->getMessage());
+            $errors = [];
+
+            //excuse me Demeter
+            $notification = $handler->getValidation()->getNotification();
+
+            if ($notification->hasErrors()) {
+                $errors = $this->buildCustomError($notification->errorMessage()->getMessage());
+            }
 
             return back()->withErrors($errors);
 
         } catch (\Exception $e) {
+
+            throw $e;
 
             $errors = $this->buildCustomError($e->getMessage());
 
